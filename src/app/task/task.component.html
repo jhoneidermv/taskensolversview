@@ -1,0 +1,30 @@
+<div class="card border-primary mb-3 py-2">
+  <div class="card-header">To-Do Task</div>
+  <div class="card-body text-primary">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>state</th>
+          <th>id</th>
+          <th>name task</th>
+          <th>edit</th>
+          <th>delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of listTasks">
+          <td>{{task.state}}</td>
+          <td>{{task.id}}</td>
+          <td>{{task.name}}</td>
+          <td>
+            <button type="button" name="button" class="btn btn-primary" [routerLink]="['/edittask', task.id]">edit</button>
+          </td>
+          <td>
+            <button type="button" name="button" class="btn btn-danger" (click) = 'delete(task)'>delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-form></app-form>

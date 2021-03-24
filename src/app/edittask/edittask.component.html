@@ -1,0 +1,13 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <form>
+      <div class="form-group row">
+        <<h2>Editing task "{{task.name}}"</h2>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" [(ngModel)]="task.name" name="name">
+          <button class="btn btn-primary my-2" role="button" (click)='create()'>Save</button>
+          <button class="btn btn-primary my-2" role="button" (click)='cancel()'>Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
