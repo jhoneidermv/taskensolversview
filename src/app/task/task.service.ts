@@ -12,6 +12,7 @@ export class TaskService {
   private urlEndPointEdit: string = "http://localhost:8084/api/edit";
   private urlEndPointGet: string = "http://localhost:8084/api/gettask";
   private urlEndPointDelete: string = "http://localhost:8084/api/delete";
+  private urlEndPointChangeState: string = "http://localhost:8084/api/updatestate";
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private http: HttpClient) { }
 
@@ -29,5 +30,10 @@ export class TaskService {
 
   deleteTask(id: number): Observable<any> {
     return this.http.delete<Task>(`${this.urlEndPointDelete}/${id}`, {headers: this.httpHeaders});
+  }
+
+  changeState(id: number): Observable<any> {
+    console.log(`estoy en el service con el id ${id}`)
+    return this.http.put<Task>(`${this.urlEndPointChangeState}/${id}`,id, {headers: this.httpHeaders});
   }
 }

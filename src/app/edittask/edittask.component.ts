@@ -10,6 +10,7 @@ import { TaskService } from '../task/task.service';
 })
 export class EdittaskComponent implements OnInit {
   task: Task = new Task();
+  nameTask: string;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private taskService: TaskService) { }
@@ -19,11 +20,14 @@ export class EdittaskComponent implements OnInit {
   }
 
   loadTask(): void{
-    console.log("llegué")
+
     this.activatedRoute.params.subscribe(params => {
       let id = params['id']
       if(id){
-        this.taskService.getTask(id).subscribe(task => this.task = task)
+        this.taskService.getTask(id).subscribe(task => {
+          this.task = task,
+          this.nameTask = this.task.name;
+        })
       }
     })
   }

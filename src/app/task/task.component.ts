@@ -8,13 +8,16 @@ import { TaskService } from './task.service';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  constructor(private taskService: TaskService) { }
-  listTasks: Task[];
 
-  ngOnInit(): void {
+  listTasks: Task[];
+  constructor(private taskService: TaskService) {
     this.taskService.getTasks().subscribe(
       response => this.listTasks = response
     );
+  }
+
+  ngOnInit(): void {
+
   }
 
   delete(task: Task): void{
@@ -24,5 +27,13 @@ export class TaskComponent implements OnInit {
         this.listTasks = this.listTasks.filter(tsk => tsk !== task)
       }
     )
+  }
+
+  metod(task: Task): void{
+    console.log(`estoy cambiando la tarea ${task.id}`)
+    this.taskService.changeState(task.id).subscribe(
+      response => {
+        console.log("respuesta "+response)
+    });
   }
 }

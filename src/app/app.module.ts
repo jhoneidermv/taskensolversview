@@ -13,6 +13,9 @@ import { FormComponent } from './form/form.component';
 import { FormsModule } from '@angular/forms';
 import { EdittaskComponent } from './edittask/edittask.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
   {path: 'tasks', component: TaskComponent},
@@ -35,6 +38,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [

@@ -1,7 +1,10 @@
 <div class="card border-primary mb-3 py-2">
   <div class="card-header">To-Do Task</div>
   <div class="card-body text-primary">
-    <table class="table table-striped">
+    <div *ngIf="listTasks?.length == 0" class="alert alert-info" >
+      No hay registros en la base de datos.
+    </div>
+    <table class="table table-striped" *ngIf="listTasks?.length>0">
       <thead>
         <tr>
           <th>state</th>
@@ -13,7 +16,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let task of listTasks">
-          <td>{{task.state}}</td>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="task.state" checked (change)="metod(task)" value="" id="flexCheckDefault">
+            </div>
+          </td>
           <td>{{task.id}}</td>
           <td>{{task.name}}</td>
           <td>
