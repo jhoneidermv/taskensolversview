@@ -33,7 +33,6 @@ export class TaskService {
   }
 
   changeState(id: number): Observable<any> {
-    console.log(`estoy en el service con el id ${id}`)
     return this.http.put<Task>(`${this.urlEndPointChangeState}/${id}`,id, {headers: this.httpHeaders});
   }
 }

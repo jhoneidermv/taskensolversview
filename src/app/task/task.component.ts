@@ -21,7 +21,6 @@ export class TaskComponent implements OnInit {
   }
 
   delete(task: Task): void{
-    console.log("Estoy en el método delete")
     this.taskService.deleteTask(task.id).subscribe(
       response => {
         this.listTasks = this.listTasks.filter(tsk => tsk !== task)
@@ -30,7 +29,6 @@ export class TaskComponent implements OnInit {
   }
 
   metod(task: Task): void{
-    console.log(`estoy cambiando la tarea ${task.id}`)
     this.taskService.changeState(task.id).subscribe(
       response => {
         console.log("respuesta "+response)

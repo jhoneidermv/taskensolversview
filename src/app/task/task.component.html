@@ -1,7 +1,7 @@
 <div class="card border-primary mb-3 py-2">
   <div class="card-header">To-Do Task</div>
   <div class="card-body text-primary">
-    <div *ngIf="listTasks?.length == 0" class="alert alert-info" >
+    <div *ngIf="listTasks.length == 0" class="alert alert-info" >
       No hay registros en la base de datos.
     </div>
     <table class="table table-striped" *ngIf="listTasks?.length>0">
