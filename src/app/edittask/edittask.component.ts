@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Task } from '../task/task';
 import { TaskService } from '../task/task.service';
 
@@ -13,6 +14,7 @@ export class EdittaskComponent implements OnInit {
   nameTask: string;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
+    private toastr: ToastrService,
     private taskService: TaskService) { }
 
   ngOnInit(): void {
@@ -34,7 +36,10 @@ export class EdittaskComponent implements OnInit {
 
   public create(): void {
     this.taskService.create(this.task).subscribe(
-      response => this.router.navigate(['/tasks'])
+      response => {
+        this.toastr.success('Task Edited'),
+        this.router.navigate(['/tasks'])
+      }
     )
   }
 

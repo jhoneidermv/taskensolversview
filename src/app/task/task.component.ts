@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task';
 import { TaskService } from './task.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task',
@@ -10,7 +11,8 @@ import { TaskService } from './task.service';
 export class TaskComponent implements OnInit {
 
   listTasks: Task[];
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService,
+  private toastr: ToastrService) {
     this.taskService.getTasks().subscribe(
       response => this.listTasks = response
     );
@@ -23,7 +25,8 @@ export class TaskComponent implements OnInit {
   delete(task: Task): void{
     this.taskService.deleteTask(task.id).subscribe(
       response => {
-        this.listTasks = this.listTasks.filter(tsk => tsk !== task)
+        this.listTasks = this.listTasks.filter(tsk => tsk !== task),
+        this.toastr.success('Task Deleted')
       }
     )
   }
@@ -31,7 +34,7 @@ export class TaskComponent implements OnInit {
   metod(task: Task): void{
     this.taskService.changeState(task.id).subscribe(
       response => {
-        console.log("respuesta "+response)
+        this.toastr.success('Changed status')
     });
   }
 }

@@ -17,14 +17,13 @@ export class FormComponent implements OnInit {
   private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-
   }
 
   public create(): void {
     this.taskService.create(this.task).subscribe(
       response => {
         this.router.navigate(['/home']),
-        this.toastr.success('Added Task')
+        this.toastr.success('Task Added')
     })
   }
 }
